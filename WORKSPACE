@@ -205,7 +205,6 @@ http_archive(
     sha256 = "1d54cd95ed276c42c276e0a3df8ab33ee41968b73af14023c03a19db48f82e73",
     strip_prefix = "grpc-1.19.0",
     urls = [
-        "https://mirror.bazel.build/github.com/grpc/grpc/archive/v1.19.0.tar.gz",
         "https://github.com/grpc/grpc/archive/v1.19.0.tar.gz",
     ],
 )
@@ -252,10 +251,10 @@ http_archive(
 http_archive(
     name = "com_github_googleapis_googleapis",
     build_file = "@com_github_googlecloudplatform_google_cloud_cpp//bazel:googleapis.BUILD",
-    sha256 = "82ba91a41fb01305de4e8805c0a9270ed2035007161aa5a4ec60f887a499f5e9",
+    sha256 = "793f1fe9d3adf28900792b4151b7cb2fa4ef14ae1e14ea4e7faa2be14be7a301",
     strip_prefix = "googleapis-6a3277c0656219174ff7c345f31fb20a90b30b97",
     urls = [
-        "https://github.com/google/googleapis/archive/6a3277c0656219174ff7c345f31fb20a90b30b97.zip",
+        "https://github.com/googleapis/googleapis/archive/6a3277c0656219174ff7c345f31fb20a90b30b97.tar.gz",
     ],
 )
 
@@ -308,7 +307,7 @@ http_archive(
     patches = [
         "//third_party:libapr1.patch",
     ],
-    sha256 = "1a0909a1146a214a6ab9de28902045461901baab4e0ee43797539ec05b6dbae0",
+    sha256 = "096968a363b2374f7450a3c65f3cc0b50561204a8da7bc03a2c39e080febd6e1",
     strip_prefix = "apr-1.6.5",
     urls = [
         "https://github.com/apache/apr/archive/1.6.5.tar.gz",

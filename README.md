@@ -133,9 +133,19 @@ libraries built by Bazel to run `pytest` and build the `bdist_wheel`. Python
 `setup.py` can also accept `--data [path]` as an argument, for example
 `python setup.py --data bazel-bin bdist_wheel`.
 
-Build Error: make fails due to "ImportError: No module named 'grpc_tools'"
+Build Error: 
+
+1. make fails due to "ImportError: No module named 'grpc_tools'"
 
 Solution: You should ```pip install grpcio; pip install --user grpcio-tools```, the option ```--user```: Install to the Python user install directory for your platform, check ```pip install --help``` to see more information.
+
+2. missing zstd.h or sasl/sasl.h
+
+We update librdkafka to v1.6.1, you need to install some dependencies, as below
+
+```
+sudo yum install cyrus-sasl-devel cyrus-sasl-lib libzstd-devel
+```
 
 #### Starting Test Containers
 

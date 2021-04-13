@@ -1,0 +1,12 @@
+diff -Naur bazel/grpc_deps.bzl bazel/grpc_deps.bzl
+--- bazel/grpc_deps.bzl	2019-02-26 16:59:15.000000000 +0000
++++ bazel/grpc_deps.bzl	2021-04-13 07:50:56.819472333 +0000
+@@ -33,7 +33,7 @@
+ 
+     native.bind(
+         name = "zlib",
+-        actual = "@com_github_madler_zlib//:z",
++        actual = "@zlib",
+     )
+ 
+     native.bind(

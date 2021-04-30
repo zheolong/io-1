@@ -40,8 +40,23 @@ class KafkaDatasetOp : public DatasetOpKernel {
     std::string servers = "";
     OP_REQUIRES_OK(ctx,
                    ParseScalarArgument<std::string>(ctx, "servers", &servers));
+    std::string security_protocol = "";
+    OP_REQUIRES_OK(ctx,
+                   ParseScalarArgument<std::string>(ctx, "security_protocol", &security_protocol));
+    std::string sasl_mechanism = "";
+    OP_REQUIRES_OK(ctx,
+                   ParseScalarArgument<std::string>(ctx, "sasl_mechanism", &sasl_mechanism));
+    std::string sasl_username = "";
+    OP_REQUIRES_OK(ctx,
+                   ParseScalarArgument<std::string>(ctx, "sasl_username", &sasl_username));
+    std::string sasl_password = "";
+    OP_REQUIRES_OK(ctx,
+                   ParseScalarArgument<std::string>(ctx, "sasl_password", &sasl_password));
     std::string group = "";
     OP_REQUIRES_OK(ctx, ParseScalarArgument<std::string>(ctx, "group", &group));
+    std::string client_id = "";
+    OP_REQUIRES_OK(ctx,
+                   ParseScalarArgument<std::string>(ctx, "client_id", &client_id));
     bool eof = false;
     OP_REQUIRES_OK(ctx, ParseScalarArgument<bool>(ctx, "eof", &eof));
     int64 timeout = -1;
@@ -49,19 +64,34 @@ class KafkaDatasetOp : public DatasetOpKernel {
     OP_REQUIRES(ctx, (timeout > 0),
                 errors::InvalidArgument(
                     "Timeout value should be large than 0, got ", timeout));
-    *output = new Dataset(ctx, std::move(topics), servers, group, eof, timeout);
+    *output = new Dataset(ctx, std::move(topics), servers, 
+                          security_protocol, sasl_mechanism,
+                          sasl_username, sasl_password,
+                          group, client_id, eof, timeout);
   }
 
  private:
   class Dataset : public DatasetBase {
    public:
     Dataset(OpKernelContext* ctx, std::vector<string> topics,
-            const string& servers, const string& group, const bool eof,
+            const string& servers, 
+            const string& security_protocol, 
+            const string& sasl_mechanism, 
+            const string& sasl_username, 
+            const string& sasl_password, 
+            const string& group, 
+            const string& client_id, 
+            const bool eof,
             const int64 timeout)
         : DatasetBase(DatasetContext(ctx)),
           topics_(std::move(topics)),
           servers_(servers),
+          security_protocol_(security_protocol),
+          sasl_mechanism_(sasl_mechanism),
+          sasl_username_(sasl_username),
+          sasl_password_(sasl_password),
           group_(group),
+          client_id_(client_id),
           eof_(eof),
           timeout_(timeout) {}
 
@@ -92,6 +122,16 @@ class KafkaDatasetOp : public DatasetOpKernel {
       TF_RETURN_IF_ERROR(b->AddVector(topics_, &topics));
       Node* servers = nullptr;
       TF_RETURN_IF_ERROR(b->AddScalar(servers_, &servers));
+      Node* security_protocol = nullptr;
+      TF_RETURN_IF_ERROR(b->AddScalar(security_protocol_, &security_protocol));
+      Node* sasl_mechanism = nullptr;
+      TF_RETURN_IF_ERROR(b->AddScalar(sasl_mechanism_, &sasl_mechanism));
+      Node* sasl_username = nullptr;
+      TF_RETURN_IF_ERROR(b->AddScalar(sasl_username_, &sasl_username));
+      Node* sasl_password = nullptr;
+      TF_RETURN_IF_ERROR(b->AddScalar(sasl_password_, &sasl_password));
+      Node* client_id = nullptr;
+      TF_RETURN_IF_ERROR(b->AddScalar(client_id_, &client_id));
       Node* group = nullptr;
       TF_RETURN_IF_ERROR(b->AddScalar(group_, &group));
       Node* eof = nullptr;
@@ -99,7 +139,10 @@ class KafkaDatasetOp : public DatasetOpKernel {
       Node* timeout = nullptr;
       TF_RETURN_IF_ERROR(b->AddScalar(timeout_, &timeout));
       TF_RETURN_IF_ERROR(
-          b->AddDataset(this, {topics, servers, group, eof, timeout}, output));
+          b->AddDataset(this, {topics, servers, 
+                        security_protocol, sasl_mechanism,
+                        sasl_username, sasl_password,
+                        group, client_id, eof, timeout}, output));
       return Status::OK();
     }
 
@@ -112,21 +155,30 @@ class KafkaDatasetOp : public DatasetOpKernel {
       Status GetNextInternal(IteratorContext* ctx,
                              std::vector<Tensor>* out_tensors,
                              bool* end_of_sequence) override {
+        // LOG(INFO) << "====GetNextInternal====";
         mutex_lock l(mu_);
         do {
+          
           // We are currently processing a topic, so try to read the next line.
+          // LOG(INFO) << "====Try to get msg from consumer====";
           if (consumer_.get()) {
+            // LOG(INFO) << "====Try to process msg from consumer====";
             while (true) {
               if (limit_ >= 0 &&
                   (topic_partition_->offset() >= limit_ || offset_ >= limit_)) {
                 // EOF current topic
+                // LOG(INFO) << "====EOF current topic====";
                 break;
               }
               std::unique_ptr<RdKafka::Message> message(
                   consumer_->consume(dataset()->timeout_));
               if (message->err() == RdKafka::ERR_NO_ERROR) {
+                // LOG(INFO) << "====RdKafka::ERR_NO_ERROR====";
                 // Produce the line as output.
                 Tensor line_tensor(cpu_allocator(), DT_STRING, {});
+                LOG(INFO) << "message payload: " << 
+                    std::string(static_cast<const char*>(message->payload()),
+                                message->len());
                 line_tensor.scalar<string>()() =
                     std::string(static_cast<const char*>(message->payload()),
                                 message->len());
@@ -144,6 +196,7 @@ class KafkaDatasetOp : public DatasetOpKernel {
                   if (dataset()->eof_) break;
               }
               else {
+                  // LOG(INFO) << "====RdKafka::ERR__TIMED_OUT====";
                   if (message->err() != RdKafka::ERR__TIMED_OUT) {
                       return errors::Internal("Failed to consume:",
                                         message->errstr());
@@ -155,12 +208,14 @@ class KafkaDatasetOp : public DatasetOpKernel {
 
             // We have reached the end of the current topic, so maybe
             // move on to next topic.
+            // LOG(INFO) << "====reached the end of the current topic====";
             ResetStreamsLocked();
             ++current_topic_index_;
           }
 
           // Iteration ends when there are no more topic to process.
           if (current_topic_index_ == dataset()->topics_.size()) {
+            // LOG(INFO) << "====Iteration ends when there are no more topic to process====";
             *end_of_sequence = true;
             return Status::OK();
           }
@@ -248,17 +303,20 @@ class KafkaDatasetOp : public DatasetOpKernel {
         }
         string topic = parts[0];
         int32 partition = 0;
+        LOG(INFO) << "topic: " << topic;
         if (parts.size() > 1) {
           if (!strings::safe_strto32(parts[1], &partition)) {
             return errors::InvalidArgument("Invalid parameters: ", entry);
           }
         }
+        LOG(INFO) << "partition: " << partition;
         int64 offset = 0;
         if (parts.size() > 2) {
           if (!strings::safe_strto64(parts[2], &offset)) {
             return errors::InvalidArgument("Invalid parameters: ", entry);
           }
         }
+        LOG(INFO) << "offset: " << offset;
 
         topic_partition_.reset(
             RdKafka::TopicPartition::create(topic, partition, offset));
@@ -278,27 +336,95 @@ class KafkaDatasetOp : public DatasetOpKernel {
 
         std::string errstr;
 
+        LOG(INFO) << "default_topic_conf: " << topic_conf.get();
         RdKafka::Conf::ConfResult result =
             conf->set("default_topic_conf", topic_conf.get(), errstr);
         if (result != RdKafka::Conf::CONF_OK) {
           return errors::Internal("Failed to set default_topic_conf:", errstr);
         }
 
+        LOG(INFO) << "bootstrap.servers: " << dataset()->servers_;
         result = conf->set("bootstrap.servers", dataset()->servers_, errstr);
         if (result != RdKafka::Conf::CONF_OK) {
           return errors::Internal("Failed to set bootstrap.servers ",
                                   dataset()->servers_, ":", errstr);
         }
+
+        LOG(INFO) << "security.protocol: " << dataset()->security_protocol_;
+        result = conf->set("security.protocol", dataset()->security_protocol_, errstr);
+        if (result != RdKafka::Conf::CONF_OK) {
+          return errors::Internal("Failed to set security.protocol ",
+                                  dataset()->security_protocol_, ":", errstr);
+        }
+
+        LOG(INFO) << "sasl.mechanism: " << dataset()->sasl_mechanism_;
+        result = conf->set("sasl.mechanism", dataset()->sasl_mechanism_, errstr);
+        if (result != RdKafka::Conf::CONF_OK) {
+          return errors::Internal("Failed to set sasl.mechanism ",
+                                  dataset()->sasl_mechanism_, ":", errstr);
+        }
+
+        LOG(INFO) << "sasl.username: " << dataset()->sasl_username_;
+        result = conf->set("sasl.username", dataset()->sasl_username_, errstr);
+        if (result != RdKafka::Conf::CONF_OK) {
+          return errors::Internal("Failed to set.sasl_username ",
+                                  dataset()->sasl_username_, ":", errstr);
+        }
+
+        LOG(INFO) << "sasl.password: " << dataset()->sasl_password_;
+        result = conf->set("sasl.password", dataset()->sasl_password_, errstr);
+        if (result != RdKafka::Conf::CONF_OK) {
+          return errors::Internal("Failed to set sasl.password ",
+                                  dataset()->sasl_password_, ":", errstr);
+        }
+
+        LOG(INFO) << "group.id: " << dataset()->group_;
         result = conf->set("group.id", dataset()->group_, errstr);
         if (result != RdKafka::Conf::CONF_OK) {
           return errors::Internal("Failed to set group.id ", dataset()->group_,
                                   ":", errstr);
         }
 
+        LOG(INFO) << "client.id: " << dataset()->client_id_;
+        result = conf->set("client.id", dataset()->client_id_, errstr);
+        if (result != RdKafka::Conf::CONF_OK) {
+          return errors::Internal("Failed to set client.id ",
+                                  dataset()->client_id_, ":", errstr);
+        }
+
+        //for (tuple_list::const_iterator i = conf.dump().begin(); i != conf.dump().end(); ++i) {
+        //    LOG(INFO) << "key: " << i->get<0>();
+        //    LOG(INFO) << "value: " << i->get<1>();
+        //}
+
+        /* NOTE: create consumer */
         consumer_.reset(RdKafka::KafkaConsumer::create(conf.get(), errstr));
         if (!consumer_.get()) {
           return errors::Internal("Failed to create consumer:", errstr);
         }
+
+        /*===================================*/
+        //基本思路为先获取server端的状态信息，将与订阅相关的topic找出来，根据分区，创建TopicPartion；最后使用assign消费
+        RdKafka::Metadata *metadataMap{ nullptr };
+        RdKafka::ErrorCode err1 = consumer_->metadata(true, nullptr, &metadataMap, 2000);
+        if (err1 != RdKafka::ERR_NO_ERROR) {
+            return errors::Internal("Failed to get consumer metadata:", RdKafka::err2str(err1));
+        }
+        const RdKafka::Metadata::TopicMetadataVector *topicList = metadataMap->topics();
+        LOG(INFO) << "===broker topic size===: " << topicList->size();
+
+        //RdKafka::Metadata::TopicMetadataVector subTopicMetaVec;
+        //std::copy_if(topicList->begin(), topicList->end(), std::back_inserter(subTopicMetaVec), [&topics](const RdKafka::TopicMetadata* data) {
+        //    return std::find_if(topics.begin(), topics.end(), [data](const std::string &tname) {return data->topic() == tname; }) != topics.end();
+        //});
+        //std::vector<RdKafka::TopicPartition*> topicpartions;
+        //std::for_each(subTopicMetaVec.begin(), subTopicMetaVec.end(), [&topicpartions](const RdKafka::TopicMetadata* data) {
+        //    auto parVec = data->partitions();
+        //    std::for_each(parVec->begin(), parVec->end(), [&](const RdKafka::PartitionMetadata *value) {
+        //        LOG(INFO) << data->topic() << " has partion: " << value->id() << " Leader is : " << value->leader();
+        //        topicpartions.push_back(RdKafka::TopicPartition::create(data->topic(), value->id(), RdKafka::Topic::OFFSET_END));
+		//});
+        /*===================================*/
 
         std::vector<RdKafka::TopicPartition*> partitions;
         partitions.emplace_back(topic_partition_.get());
@@ -332,7 +458,12 @@ class KafkaDatasetOp : public DatasetOpKernel {
 
     const std::vector<string> topics_;
     const std::string servers_;
+    const std::string security_protocol_;
+    const std::string sasl_mechanism_;
+    const std::string sasl_username_;
+    const std::string sasl_password_;
     const std::string group_;
+    const std::string client_id_;
     const bool eof_;
     const int64 timeout_;
   };

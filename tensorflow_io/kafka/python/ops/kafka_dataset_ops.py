@@ -30,7 +30,12 @@ class KafkaDataset(data.Dataset):
   def __init__(self,
                topics,
                servers="localhost",
+               security_protocol="SASL_PLAINTEXT",
+               sasl_mechanism="SCRAM-SHA-256",
+               sasl_username="alice",
+               sasl_password="alice-secret",
                group="",
+               client_id="cid",
                eof=False,
                timeout=1000):
     """Create a KafkaReader.
@@ -49,8 +54,18 @@ class KafkaDataset(data.Dataset):
         topics, dtype=dtypes.string, name="topics")
     self._servers = tensorflow.convert_to_tensor(
         servers, dtype=dtypes.string, name="servers")
+    self._security_protocol = tensorflow.convert_to_tensor(
+        security_protocol, dtype=dtypes.string, name="security_protocol")
+    self._sasl_mechanism = tensorflow.convert_to_tensor(
+        sasl_mechanism, dtype=dtypes.string, name="sasl_mechanism")
+    self._sasl_username = tensorflow.convert_to_tensor(
+        sasl_username, dtype=dtypes.string, name="sasl_username")
+    self._sasl_password = tensorflow.convert_to_tensor(
+        sasl_password, dtype=dtypes.string, name="sasl_password")
     self._group = tensorflow.convert_to_tensor(
         group, dtype=dtypes.string, name="group")
+    self._client_id = tensorflow.convert_to_tensor(
+        client_id, dtype=dtypes.string, name="client_id")
     self._eof = tensorflow.convert_to_tensor(eof, dtype=dtypes.bool, name="eof")
     self._timeout = tensorflow.convert_to_tensor(
         timeout, dtype=dtypes.int64, name="timeout")
@@ -61,7 +76,10 @@ class KafkaDataset(data.Dataset):
 
   def _as_variant_tensor(self):
     return kafka_ops.kafka_dataset(self._topics, self._servers,
-                                   self._group, self._eof, self._timeout)
+                                   self._security_protocol, self._sasl_mechanism,
+                                   self._sasl_username, self._sasl_password,
+                                   self._group, self._client_id,
+                                   self._eof, self._timeout)
 
   @property
   def output_classes(self):

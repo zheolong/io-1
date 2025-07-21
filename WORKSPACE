@@ -10,7 +10,6 @@ http_archive(
     sha256 = "b3a24de97a8fdbc835b9833169501030b8977031bcb54b3b3ac13740f846ab30",
     strip_prefix = "zlib-1.2.13",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/zlib.net/zlib-1.2.13.tar.gz",
         "https://zlib.net/zlib-1.2.13.tar.gz",
     ],
 )
@@ -22,7 +21,6 @@ http_archive(
     sha256 = "16b677f07832a612b0836178db7f374e414f94657c138e6993cbfc5dcc58651f",
     strip_prefix = "snappy-1.1.8",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/google/snappy/archive/1.1.8.tar.gz",
         "https://github.com/google/snappy/archive/1.1.8.tar.gz",
     ],
 )
@@ -36,7 +34,6 @@ http_archive(
     sha256 = "a9c3b03657d507975a32732f04563132b4553c20747cec6dc04de475c8bdf29f",
     strip_prefix = "boringssl-80ca9f9f6ece29ab132cce4cf807a9465a18cfac",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/google/boringssl/archive/80ca9f9f6ece29ab132cce4cf807a9465a18cfac.tar.gz",
         "https://github.com/google/boringssl/archive/80ca9f9f6ece29ab132cce4cf807a9465a18cfac.tar.gz",
     ],
 )
@@ -54,7 +51,6 @@ http_archive(
     sha256 = "14bf9bf97431b890e0ae5dca8f8904841d4883b8596a7108a42f5700ae58d711",
     strip_prefix = "google-cloud-cpp-1.21.0",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/googleapis/google-cloud-cpp/archive/v1.21.0.tar.gz",
         "https://github.com/googleapis/google-cloud-cpp/archive/v1.21.0.tar.gz",
     ],
 )
@@ -96,7 +92,6 @@ http_archive(
     name = "rules_python",
     sha256 = "aa96a691d3a8177f3215b14b0edc9641787abaaa30363a080165d06ab65e1161",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/bazelbuild/rules_python/releases/download/0.0.1/rules_python-0.0.1.tar.gz",
         "https://github.com/bazelbuild/rules_python/releases/download/0.0.1/rules_python-0.0.1.tar.gz",
     ],
 )
@@ -149,7 +144,6 @@ http_archive(
     sha256 = "6450d3970578c794b23e9e1645440c6f42f63be3f82383097660db5cf2fba685",
     strip_prefix = "aliyun-oss-c-sdk-3.7.0",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/aliyun/aliyun-oss-c-sdk/archive/3.7.0.tar.gz",
         "https://github.com/aliyun/aliyun-oss-c-sdk/archive/3.7.0.tar.gz",
     ],
 )
@@ -160,7 +154,6 @@ http_archive(
     sha256 = "57e13c62f27b710e1de54fd30faed612aefa22aa41fa2c0c3bacd204dd18a8f3",
     strip_prefix = "arrow-apache-arrow-7.0.0",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/apache/arrow/archive/apache-arrow-7.0.0.tar.gz",
         "https://github.com/apache/arrow/archive/apache-arrow-7.0.0.tar.gz",
     ],
 )
@@ -171,7 +164,6 @@ http_archive(
     sha256 = "8fd1f850ce37e60835e6d8335c0027a959aaa316773da8a9660f7d33a66ac142",
     strip_prefix = "avro-release-1.10.1/lang/c++",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/apache/avro/archive/release-1.10.1.tar.gz",
         "https://github.com/apache/avro/archive/release-1.10.1.tar.gz",
     ],
 )
@@ -182,7 +174,6 @@ http_archive(
     sha256 = "6e6bed6f75cf54006b6bafb01b3b96df19605572131a2260fddaf0e87949ced0",
     strip_prefix = "aws-checksums-0.1.5",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/awslabs/aws-checksums/archive/v0.1.5.tar.gz",
         "https://github.com/awslabs/aws-checksums/archive/v0.1.5.tar.gz",
     ],
 )
@@ -193,7 +184,6 @@ http_archive(
     sha256 = "01c2a58553a37b3aa5914d9e0bf7bf14507ff4937bc5872a678892ca20fcae1f",
     strip_prefix = "aws-c-common-0.4.29",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/awslabs/aws-c-common/archive/v0.4.29.tar.gz",
         "https://github.com/awslabs/aws-c-common/archive/v0.4.29.tar.gz",
     ],
 )
@@ -204,7 +194,6 @@ http_archive(
     sha256 = "31d880d1c868d3f3df1e1f4b45e56ac73724a4dc3449d04d47fc0746f6f077b6",
     strip_prefix = "aws-c-event-stream-0.1.4",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/awslabs/aws-c-event-stream/archive/v0.1.4.tar.gz",
         "https://github.com/awslabs/aws-c-event-stream/archive/v0.1.4.tar.gz",
     ],
 )
@@ -219,7 +208,6 @@ http_archive(
     sha256 = "749322a8be4594472512df8a21d9338d7181c643a00e08a0ff12f07e831e3346",
     strip_prefix = "aws-sdk-cpp-1.8.186",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/aws/aws-sdk-cpp/archive/1.8.186.tar.gz",
         "https://github.com/aws/aws-sdk-cpp/archive/1.8.186.tar.gz",
     ],
 )
@@ -230,8 +218,6 @@ http_archive(
     sha256 = "c66e88d5786f2ca4dbebb14e06b566fb642a1a6947ad8cc9091f9f445134143f",
     strip_prefix = "boost_1_72_0",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.gz",
-        "https://storage.googleapis.com/mirror.tensorflow.org/downloads.sourceforge.net/project/boost/boost/1.72.0/boost_1_72_0.tar.gz",
         "https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.gz",
         "https://downloads.sourceforge.net/project/boost/boost/1.72.0/boost_1_72_0.tar.gz",
     ],
@@ -243,7 +229,6 @@ http_archive(
     sha256 = "4c61bfb0faca87219ea587326c467b95acb25555b53d1a421ffa3c8a9296ee2c",
     strip_prefix = "brotli-1.0.7",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/google/brotli/archive/v1.0.7.tar.gz",
         "https://github.com/google/brotli/archive/v1.0.7.tar.gz",
     ],
 )
@@ -254,7 +239,6 @@ http_archive(
     sha256 = "ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269",
     strip_prefix = "bzip2-1.0.8",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz",
         "https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz",
     ],
 )
@@ -303,7 +287,6 @@ http_archive(
     sha256 = "66c3e831a93f074290a72aad5da907e3763ecb092325f0250a841927b3d30ce3",
     strip_prefix = "dav1d-0.6.0",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/videolan/dav1d/archive/0.6.0.tar.gz",
         "https://github.com/videolan/dav1d/archive/0.6.0.tar.gz",
     ],
 )
@@ -314,7 +297,6 @@ http_archive(
     sha256 = "fa8e34b1a5de101df8916eb22eaffd8f7d1b2ff001a88f819fbfbde01fe5af7d",
     strip_prefix = "dcmtk-DCMTK-3.6.5-_20210308",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/DCMTK/dcmtk/archive/refs/tags/DCMTK-3.6.5+_20210308.tar.gz",
         "https://github.com/DCMTK/dcmtk/archive/refs/tags/DCMTK-3.6.5+_20210308.tar.gz",
     ],
 )
@@ -325,7 +307,6 @@ http_archive(
     sha256 = "f18a412e84d8b701e61a78252411fe8c72587f52417c1ef21ca93604de1b9c55",
     strip_prefix = "dlfcn-win32-1.2.0",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/dlfcn-win32/dlfcn-win32/archive/v1.2.0.tar.gz",
         "https://github.com/dlfcn-win32/dlfcn-win32/archive/v1.2.0.tar.gz",
     ],
 )
@@ -335,7 +316,6 @@ http_archive(
     sha256 = "a63ecb93182134ba4293fd5f22d6e08ca417caafa244afaa751cbfddf6415b13",
     strip_prefix = "double-conversion-3.1.5",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/google/double-conversion/archive/v3.1.5.tar.gz",
         "https://github.com/google/double-conversion/archive/v3.1.5.tar.gz",
     ],
 )
@@ -346,7 +326,6 @@ http_archive(
     sha256 = "7a49a2617da70b318d1464625e1c5fd6d369d04aa1b23a270d3d0926d8669432",
     strip_prefix = "easyexif-19d15151c3f663813dc70cf9ff568d25ab6ff93b",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/mayanklahiri/easyexif/archive/19d15151c3f663813dc70cf9ff568d25ab6ff93b.tar.gz",
         "https://github.com/mayanklahiri/easyexif/archive/19d15151c3f663813dc70cf9ff568d25ab6ff93b.tar.gz",
     ],
 )
@@ -357,7 +336,6 @@ http_archive(
     sha256 = "8ba1b91a14431fe37091936c3a34469d7473965ab9edde0343c88f2d920bd918",
     strip_prefix = "FFmpeg-n2.8.15",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/FFmpeg/FFmpeg/archive/n2.8.15.tar.gz",
         "https://github.com/FFmpeg/FFmpeg/archive/n2.8.15.tar.gz",
     ],
 )
@@ -368,7 +346,6 @@ http_archive(
     sha256 = "bbccc87cd031498728bcc2dba5596a47e6fd92b2cec060a71feef65617a261fe",
     strip_prefix = "FFmpeg-n3.4.4",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/FFmpeg/FFmpeg/archive/n3.4.4.tar.gz",
         "https://github.com/FFmpeg/FFmpeg/archive/n3.4.4.tar.gz",
     ],
 )
@@ -379,7 +356,6 @@ http_archive(
     sha256 = "42f3d391dbf07b65a52d3d9eed8038ecd9fae53cf4e0e44e2adb95d0cd433b53",
     strip_prefix = "FFmpeg-n4.2.4",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/FFmpeg/FFmpeg/archive/n4.2.4.tar.gz",
         "https://github.com/FFmpeg/FFmpeg/archive/n4.2.4.tar.gz",
     ],
 )
@@ -390,7 +366,6 @@ http_archive(
     sha256 = "668cdeab898a7dd43cf84739f7e1f3ed6b35ece2ef9968a5c7079fe9adfe1689",
     strip_prefix = "flac-1.3.3",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/xiph/flac/archive/1.3.3.tar.gz",
         "https://github.com/xiph/flac/archive/1.3.3.tar.gz",
     ],
 )
@@ -401,7 +376,6 @@ http_archive(
     sha256 = "a8563307cb09161633479aff0880368ed57396f6d532facba973cf303d699717",
     strip_prefix = "fmjpeg2koj-6de80e15a43a4d1c411109aea388007afee24263",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/DraconPern/fmjpeg2koj/archive/6de80e15a43a4d1c411109aea388007afee24263.tar.gz",
         "https://github.com/DraconPern/fmjpeg2koj/archive/6de80e15a43a4d1c411109aea388007afee24263.tar.gz",
     ],
 )
@@ -415,7 +389,6 @@ http_archive(
     sha256 = "3a60d391fd579440561bf0e7f31af2222bc610ad6ce4d9d7bd2165bca8669110",
     strip_prefix = "freetype-2.10.1",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/download.savannah.gnu.org/releases/freetype/freetype-2.10.1.tar.gz",
         "https://download.savannah.gnu.org/releases/freetype/freetype-2.10.1.tar.gz",
     ],
 )
@@ -426,7 +399,6 @@ http_archive(
     sha256 = "fa9d0587d06c36838e778081bcf8271a9c63060af00b3bf456423c1777a62043",
     strip_prefix = "hadoop-rel-release-3.3.0",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/apache/hadoop/archive/refs/tags/rel/release-3.3.0.tar.gz",
         "https://github.com/apache/hadoop/archive/refs/tags/rel/release-3.3.0.tar.gz",
     ],
 )
@@ -437,7 +409,6 @@ http_archive(
     sha256 = "5f9a3ee85db4ea1d3b1fa9159352aebc2af72732fc2f58c96a3f0768dba0e9aa",
     strip_prefix = "hdf5-1.10.6",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.6/src/hdf5-1.10.6.tar.gz",
         "https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.10/hdf5-1.10.6/src/hdf5-1.10.6.tar.gz",
     ],
 )
@@ -448,7 +419,6 @@ http_archive(
     sha256 = "c4d3ae84014f8a80f5011521f391e917bc3b4f6ebd78e97f238472e95849ec14",
     strip_prefix = "htslib-1.9",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/samtools/htslib/archive/1.9.zip",
         "https://github.com/samtools/htslib/archive/1.9.zip",
     ],
 )
@@ -464,7 +434,6 @@ http_archive(
     sha256 = "f7fee59fdbf1286ec23ef0b35b2dfb41031c8727c90ced6435b8cf576f23a656",
     strip_prefix = "librdkafka-1.5.0",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/edenhill/librdkafka/archive/v1.5.0.tar.gz",
         "https://github.com/edenhill/librdkafka/archive/v1.5.0.tar.gz",
     ],
 )
@@ -479,7 +448,6 @@ http_archive(
     sha256 = "096968a363b2374f7450a3c65f3cc0b50561204a8da7bc03a2c39e080febd6e1",
     strip_prefix = "apr-1.6.5",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/apache/apr/archive/1.6.5.tar.gz",
         "https://github.com/apache/apr/archive/1.6.5.tar.gz",
     ],
 )
@@ -494,7 +462,6 @@ http_archive(
     sha256 = "1e4299da5a3eca49cc3acab60600d0d7c0cda2de46d662ca14fadf5ab68a8c4f",
     strip_prefix = "apr-util-1.6.1",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/apache/apr-util/archive/1.6.1.tar.gz",
         "https://github.com/apache/apr-util/archive/1.6.1.tar.gz",
     ],
 )
@@ -505,7 +472,6 @@ http_archive(
     sha256 = "720da414e7aebb255fcdaee106894e4d30e2472ac1390c2c15b70c84c7479658",
     strip_prefix = "libarchive-3.3.3",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/libarchive/libarchive/archive/v3.3.3.tar.gz",
         "https://github.com/libarchive/libarchive/archive/v3.3.3.tar.gz",
     ],
 )
@@ -516,7 +482,6 @@ http_archive(
     sha256 = "a4ce03649c58ec9f3dc6ab2b7cf7d58474b149acf1e4c563be4081bad60ed2dd",
     strip_prefix = "libavif-0.7.3",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/AOMediaCodec/libavif/archive/v0.7.3.tar.gz",
         "https://github.com/AOMediaCodec/libavif/archive/v0.7.3.tar.gz",
     ],
 )
@@ -527,7 +492,6 @@ http_archive(
     sha256 = "574499cba22a599393e28d99ecfa1e7fc85be7d6651d543045244d5b561cb7ff",
     strip_prefix = "libexpat-R_2_2_6/expat",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/libexpat/libexpat/archive/R_2_2_6.tar.gz",
         "http://github.com/libexpat/libexpat/archive/R_2_2_6.tar.gz",
     ],
 )
@@ -545,7 +509,6 @@ http_archive(
     sha256 = "9452dadd126223a22ce6b97d202066d3873792aaefa7ce739519635a3fe34034",
     strip_prefix = "libgeotiff-1.6.0",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/OSGeo/libgeotiff/releases/download/1.6.0/libgeotiff-1.6.0.zip",
         "https://github.com/OSGeo/libgeotiff/releases/download/1.6.0/libgeotiff-1.6.0.zip",
     ],
 )
@@ -559,7 +522,6 @@ http_archive(
     sha256 = "e22c0bb032fde08f53de9ffbc5a128233041d9f33b5de022c0978a2149885f82",
     strip_prefix = "libmemcached-1.0.18",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/launchpad.net/libmemcached/1.0/1.0.18/+download/libmemcached-1.0.18.tar.gz",
         "https://launchpad.net/libmemcached/1.0/1.0.18/+download/libmemcached-1.0.18.tar.gz",
     ],
 )
@@ -598,7 +560,6 @@ http_archive(
     sha256 = "0e46e5acb087ce7d1ac53cf4f56a09b221537fc86dfc5daaad1c2e89e1b37ac8",
     strip_prefix = "tiff-4.3.0",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/download.osgeo.org/libtiff/tiff-4.3.0.tar.gz",
         "https://download.osgeo.org/libtiff/tiff-4.3.0.tar.gz",
     ],
 )
@@ -609,7 +570,6 @@ http_archive(
     sha256 = "01bcde6a40a602294994050b81df379d71c40b7e39c819c024d079b3c56307f4",
     strip_prefix = "libwebp-1.2.1",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/webmproject/libwebp/archive/v1.2.1.tar.gz",
         "https://github.com/webmproject/libwebp/archive/v1.2.1.tar.gz",
     ],
 )
@@ -630,7 +590,6 @@ http_archive(
     sha256 = "658ba6191fa44c92280d4aa2c271b0f4fbc0e34d249578dd05e50e76d0e5efcc",
     strip_prefix = "lz4-1.9.2",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/lz4/lz4/archive/v1.9.2.tar.gz",
         "https://github.com/lz4/lz4/archive/v1.9.2.tar.gz",
     ],
 )
@@ -641,7 +600,6 @@ http_archive(
     sha256 = "09395758f4c964fb158875f3cc9b9a65f36e9f5b2a27fb10f99519a0a6aef664",
     strip_prefix = "minimp3-55da78cbeea5fb6757f8df672567714e1e8ca3e9",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/lieff/minimp3/archive/55da78cbeea5fb6757f8df672567714e1e8ca3e9.tar.gz",
         "https://github.com/lieff/minimp3/archive/55da78cbeea5fb6757f8df672567714e1e8ca3e9.tar.gz",
     ],
 )
@@ -652,7 +610,6 @@ http_archive(
     sha256 = "2c9e176b2df3f72d9cb3bcd0959ebfc9da3efcedbea70fb945270c7bfa9e7758",
     strip_prefix = "minimp4-14d452e4fac71da38f5c02e211486144075f4ecb",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/lieff/minimp4/archive/14d452e4fac71da38f5c02e211486144075f4ecb.tar.gz",
         "https://github.com/lieff/minimp4/archive/14d452e4fac71da38f5c02e211486144075f4ecb.tar.gz",
     ],
 )
@@ -667,7 +624,6 @@ http_archive(
     sha256 = "4d850d15cdd4fdb9e82817eb069050d7575059a9a2729c82b23440e4445da199",
     strip_prefix = "mxml-2.12",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/michaelrsweet/mxml/archive/v2.12.tar.gz",
         "https://github.com/michaelrsweet/mxml/archive/v2.12.tar.gz",
     ],
 )
@@ -682,7 +638,6 @@ http_archive(
     sha256 = "aa865d3509ba8f3527392303bd95a11f48f19e68197b3d1d0bae9fab004bee87",
     strip_prefix = "nucleus-0.4.1",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/google/nucleus/archive/0.4.1.tar.gz",
         "https://github.com/google/nucleus/archive/0.4.1.tar.gz",
     ],
 )
@@ -696,7 +651,6 @@ http_archive(
     sha256 = "3da31a4eb31534b6f878914b7379b873c280e610649fe5c07935b3d137a828bc",
     strip_prefix = "ogg-1.3.4",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/xiph/ogg/archive/v1.3.4.tar.gz",
         "https://github.com/xiph/ogg/archive/v1.3.4.tar.gz",
     ],
 )
@@ -707,7 +661,6 @@ http_archive(
     sha256 = "4904c5ea7914a58f60a5e2fbc397be67e7a25c380d7d07c1c31a3eefff1c92f1",
     strip_prefix = "openexr-2.4.0",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/openexr/openexr/archive/v2.4.0.tar.gz",
         "https://github.com/openexr/openexr/archive/v2.4.0.tar.gz",
     ],
 )
@@ -718,7 +671,6 @@ http_archive(
     sha256 = "8702ba68b442657f11aaeb2b338443ca8d5fb95b0d845757968a7be31ef7f16d",
     strip_prefix = "openjpeg-2.4.0",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/uclouvain/openjpeg/archive/v2.4.0.tar.gz",
         "https://github.com/uclouvain/openjpeg/archive/v2.4.0.tar.gz",
     ],
 )
@@ -729,7 +681,6 @@ http_archive(
     sha256 = "9868c1149a04bae1131533c5cbd1c46f9c077f834f6147abaef8791a7c91b1a1",
     strip_prefix = "postgresql-12.1",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/ftp.postgresql.org/pub/source/v12.1/postgresql-12.1.tar.gz",
         "https://ftp.postgresql.org/pub/source/v12.1/postgresql-12.1.tar.gz",
     ],
 )
@@ -745,7 +696,6 @@ http_archive(
     sha256 = "f0c88738b1bd3b65a217734b56a763988ea1ca4c779e39d9d9a8b5878888cd6f",
     strip_prefix = "proj-8.0.0",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/OSGeo/PROJ/releases/download/7.2.1/proj-8.0.0.zip",
         "https://github.com/OSGeo/PROJ/releases/download/8.0.0/proj-8.0.0.zip",
     ],
 )
@@ -771,7 +721,6 @@ http_archive(
     sha256 = "30bd2c428216e50400d493b38ca33a25efb1dd65f79dfc614ab0c957a3ac2c28",
     strip_prefix = "rapidjson-418331e99f859f00bdc8306f69eba67e8693c55e",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/miloyip/rapidjson/archive/418331e99f859f00bdc8306f69eba67e8693c55e.tar.gz",
         "https://github.com/miloyip/rapidjson/archive/418331e99f859f00bdc8306f69eba67e8693c55e.tar.gz",
     ],
 )
@@ -782,7 +731,6 @@ http_archive(
     sha256 = "978de595fcc62448dbdc8ca8def7879fbe63245dd7f57c1898270e53a0abf95b",
     strip_prefix = "stb-052dce117ed989848a950308bd99eef55525dfb1",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/nothings/stb/archive/052dce117ed989848a950308bd99eef55525dfb1.tar.gz",
         "https://github.com/nothings/stb/archive/052dce117ed989848a950308bd99eef55525dfb1.tar.gz",
     ],
 )
@@ -793,7 +741,6 @@ http_archive(
     sha256 = "d7032f607e8913c019b190c2bccc36ea73fc36718ee38b5cdfc4e4c0a04ce9a4",
     strip_prefix = "speexdsp-SpeexDSP-1.2.0",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/xiph/speexdsp/archive/SpeexDSP-1.2.0.tar.gz",
         "https://github.com/xiph/speexdsp/archive/SpeexDSP-1.2.0.tar.gz",
     ],
 )
@@ -804,7 +751,6 @@ http_archive(
     sha256 = "5da60088e60984f4f0801deeea628d193c33cec621e78c8a43a5d8c4055f7ad9",
     strip_prefix = "thrift-0.13.0",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/apache/thrift/archive/v0.13.0.tar.gz",
         "https://github.com/apache/thrift/archive/v0.13.0.tar.gz",
     ],
 )
@@ -815,7 +761,6 @@ http_archive(
     sha256 = "b8c972dfbbcef33d55554e7c9031abe7040795b67778ad3660a50afa7df6ec56",
     strip_prefix = "tinyobjloader-2.0.0rc8",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/tinyobjloader/tinyobjloader/archive/v2.0.0rc8.tar.gz",
         "https://github.com/tinyobjloader/tinyobjloader/archive/v2.0.0rc8.tar.gz",
     ],
 )
@@ -826,7 +771,6 @@ http_archive(
     sha256 = "2483d5a42bc39575fc215c6994554f5169db777262d606ebe9cd8d5f37557f72",
     strip_prefix = "util-linux-2.32.1",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/karelzak/util-linux/archive/v2.32.1.tar.gz",
         "https://github.com/karelzak/util-linux/archive/v2.32.1.tar.gz",
     ],
 )
@@ -837,7 +781,6 @@ http_archive(
     sha256 = "43fc4bc34f13da15b8acfa72fd594678e214d1cab35fc51d3a54969a725464eb",
     strip_prefix = "vorbis-1.3.6",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/xiph/vorbis/archive/v1.3.6.tar.gz",
         "https://github.com/xiph/vorbis/archive/v1.3.6.tar.gz",
     ],
 )
@@ -858,7 +801,6 @@ http_archive(
     sha256 = "0d2b89629f13dd1a0602810529327195eff5f62a0142ccd65b903bc16a4ac78a",
     strip_prefix = "xz-5.2.5",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/xz-mirror/xz/archive/v5.2.5.tar.gz",
         "https://github.com/xz-mirror/xz/archive/v5.2.5.tar.gz",
     ],
 )
@@ -869,18 +811,17 @@ http_archive(
     sha256 = "a364f5162c7d1a455cc915e8e3cf5f4bd8b75d09bc0f53965b0c9ca1383c52c8",
     strip_prefix = "zstd-1.4.4",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/facebook/zstd/archive/v1.4.4.tar.gz",
         "https://github.com/facebook/zstd/archive/v1.4.4.tar.gz",
     ],
 )
 
 # Needed for llvm_toolchain and Golang
+# Override bazel-toolchain (using a direct GitHub URL + corrected SHA256)
 http_archive(
     name = "com_grail_bazel_toolchain",
-    sha256 = "9e6065ded4b7453143e1586d6819729a63cd233114b72bf85ff3435367b02c90",
-    strip_prefix = "bazel-toolchain-edd07e96a2ecaa131af9234d6582875d980c0ac7",
+    sha256 = "4b7999c1fa2c3117bb21651e3c155b152e44ae67b2c311214883d4707dbe183f",
+    strip_prefix = "toolchains_llvm-edd07e96a2ecaa131af9234d6582875d980c0ac7",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/grailbio/bazel-toolchain/archive/edd07e96a2ecaa131af9234d6582875d980c0ac7.tar.gz",
         "https://github.com/grailbio/bazel-toolchain/archive/edd07e96a2ecaa131af9234d6582875d980c0ac7.tar.gz",
     ],
 )
@@ -897,7 +838,6 @@ http_archive(
     name = "io_bazel_rules_go",
     sha256 = "ae8c36ff6e565f674c7a3692d6a9ea1096e4c1ade497272c2108a810fb39acd2",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/bazelbuild/rules_go/releases/download/0.19.4/rules_go-0.19.4.tar.gz",
         "https://github.com/bazelbuild/rules_go/releases/download/0.19.4/rules_go-0.19.4.tar.gz",
     ],
 )
@@ -906,7 +846,6 @@ http_archive(
     name = "bazel_gazelle",
     sha256 = "7fc87f4170011201b1690326e8c16c5d802836e3a0d617d8f75c3af2b23180c4",
     urls = [
-        "https://storage.googleapis.com/mirror.tensorflow.org/github.com/bazelbuild/bazel-gazelle/releases/download/0.18.2/bazel-gazelle-0.18.2.tar.gz",
         "https://github.com/bazelbuild/bazel-gazelle/releases/download/0.18.2/bazel-gazelle-0.18.2.tar.gz",
     ],
 )

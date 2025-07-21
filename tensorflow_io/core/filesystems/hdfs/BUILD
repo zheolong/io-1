@@ -18,7 +18,7 @@ cc_library(
         "//tensorflow_io/core/filesystems:filesystem_plugins_header",
         "@com_google_absl//absl/strings",
         "@com_google_absl//absl/synchronization",
-        "@hadoop",
+        "@libhdfs3_repo//:libhdfs3",
     ],
     alwayslink = 1,
 )

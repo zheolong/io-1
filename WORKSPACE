@@ -890,3 +890,17 @@ go_repository(
     importpath = "github.com/prometheus/prom2json",
     tag = "v1.2.2",
 )
+
+new_local_repository(
+    name = "libhdfs3_repo",
+    path = "/usr/local/libhdfs3",  # 替换成你的libhdfs3源码目录或安装目录
+    build_file_content = """
+cc_library(
+    name = "libhdfs3",
+    hdrs = glob(["include/**/*.h"]),
+    includes = ["include"],
+    linkopts = ["-Llib", "-lhdfs3"],
+    visibility = ["//visibility:public"],
+)
+""",
+)

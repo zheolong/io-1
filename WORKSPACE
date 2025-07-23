@@ -10,7 +10,7 @@ http_archive(
     sha256 = "b3a24de97a8fdbc835b9833169501030b8977031bcb54b3b3ac13740f846ab30",
     strip_prefix = "zlib-1.2.13",
     urls = [
-        "https://zlib.net/zlib-1.2.13.tar.gz",
+        "https://github.com/madler/zlib/releases/download/v1.2.13/zlib-1.2.13.tar.gz",
     ],
 )
 
@@ -239,7 +239,7 @@ http_archive(
     sha256 = "ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269",
     strip_prefix = "bzip2-1.0.8",
     urls = [
-        "https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz",
+        "https://fossies.org/linux/misc/bzip2-1.0.8.tar.gz",
     ],
 )
 
@@ -500,7 +500,7 @@ new_git_repository(
     name = "libgav1",
     build_file = "//third_party:libgav1.BUILD",
     commit = "07a59c59d4d180d67ea0ae5269e3c092c87286e5",
-    remote = "https://chromium.googlesource.com/codecs/libgav1",
+    remote = "https://www.mobibrw.com/gitea-mirrors/chromium/codecs.libgav1.git",
 )
 
 http_archive(
@@ -578,7 +578,7 @@ new_git_repository(
     name = "libyuv",
     build_file = "//third_party:libyuv.BUILD",
     commit = "7f00d67d7c279f13b73d3be9c2d85873a7e2fbaf",
-    remote = "https://chromium.googlesource.com/libyuv/libyuv",
+    remote = "https://github.com/lemenkov/libyuv",
 )
 
 http_archive(
@@ -863,32 +863,60 @@ gazelle_dependencies()
 go_repository(
     name = "com_github_prometheus_common",
     importpath = "github.com/prometheus/common",
-    tag = "v0.4.1",
+    # 1) 官方代理
+    # urls = ["https://proxy.golang.org/github.com/prometheus/common/@v/v0.4.1.zip"],
+    # 2) 国内七牛镜像（二选一，把上面那行注释掉即可）
+    urls = ["https://goproxy.cn/github.com/prometheus/common/@v/v0.4.1.zip"],
+    strip_prefix = "github.com/prometheus/common@v0.4.1",
+    type = "zip",
 )
 
 go_repository(
     name = "com_github_prometheus_client_golang",
     importpath = "github.com/prometheus/client_golang",
-    tag = "v0.9.3",
+    # 1) 官方代理
+    # urls = ["https://proxy.golang.org/github.com/prometheus/client_golang/@v/v0.9.3.zip"],
+    # 2) 国内七牛镜像（二选一，把上面那行注释掉即可）
+    urls = ["https://goproxy.cn/github.com/prometheus/client_golang/@v/v0.9.3.zip"],
+    strip_prefix = "github.com/prometheus/client_golang@v0.9.3",
+    type = "zip",
 )
 
 go_repository(
-    name = "com_github_matttproud_golang_protobuf_extensionsn",
-    commit = "c182affec369e30f25d3eb8cd8a478dee585ae7d",
+    name = "com_github_matttproud_golang_protobuf_extensions",
     importpath = "github.com/matttproud/golang_protobuf_extensions",
+    tag = "v1.0.4",
+
+    # 下面的反而会编译失败，原因不明
+    # 1) 官方代理
+    # urls = ["https://proxy.golang.org/github.com/prometheus/golang_protobuf_extensions/@v/v1.0.4.zip"],
+    # 2) 国内七牛镜像（二选一，把上面那行注释掉即可）
+    #urls = ["https://goproxy.cn/github.com/matttproud/golang_protobuf_extensions/@v/v1.0.4.zip"],
+    #strip_prefix = "github.com/matttproud/golang_protobuf_extensions@v1.0.4",
+    #type = "zip",
 )
 
 go_repository(
     name = "com_github_prometheus_client_model",
-    commit = "14fe0d1b01d4d5fc031dd4bec1823bd3ebbe8016",
     importpath = "github.com/prometheus/client_model",
+    # 1) 官方代理
+    # urls = ["https://proxy.golang.org/github.com/prometheus/client_model/@v/v0.6.0.zip"],
+    # 2) 国内七牛镜像（二选一，把上面那行注释掉即可）
+    urls = ["https://goproxy.cn/github.com/prometheus/client_model/@v/v0.1.0.zip"],
+    strip_prefix = "github.com/prometheus/client_model@v0.1.0",
+    type = "zip",
 )
 
 go_repository(
     name = "com_github_prometheus_prom2json",
     build_extra_args = ["-exclude=vendor"],
     importpath = "github.com/prometheus/prom2json",
-    tag = "v1.2.2",
+    # 1) 官方代理
+    # urls = ["https://proxy.golang.org/github.com/prometheus/client_model/@v/v1.2.2.zip"],
+    # 2) 国内七牛镜像（二选一，把上面那行注释掉即可）
+    urls = ["https://goproxy.cn/github.com/prometheus/prom2json/@v/v1.2.2.zip"],
+    strip_prefix = "github.com/prometheus/prom2json@v1.2.2",
+    type = "zip",
 )
 
 new_local_repository(

@@ -13,6 +13,7 @@ echo "TF_HEADER_DIR=$TF_HEADER_DIR"
 echo "TF_SHARED_LIBRARY_DIR=$TF_SHARED_LIBRARY_DIR"
 
 # bazel编译失败了，就重复多执行几次，最终如果还是不成功，看日志里的错误，往前面找第一次红色ERROR
+# 正常结果：最后显示'INFO: 995 processes: 64 internal, 931 processwrapper-sandbox.'
 bazel clean
 bazel build -s --verbose_failures --experimental_repo_remote_exec --compilation_mode=opt --cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0" //tensorflow_io/... //tensorflow_io_gcs_filesystem/...
 python setup.py bdist_wheel --data bazel-bin
@@ -23,7 +24,9 @@ python setup.py bdist_wheel --data bazel-bin
 pip3 install --force dist/tensorflow_io-*.whl
 
 # 正常结果：['oss', 'file', 'hdfs', 'viewfs', 'gs', 'har', 'az', '', 'http', 'ram', 'https', 's3']
+# 不要在编译的目录下执行，编译的目录下执行结果必然是缺少一些scheme
 
+pushd tmp
 python -W always -c "
 import tensorflow as tf
 import tensorflow_io as tfio
@@ -31,4 +34,4 @@ import logging, os, sys
 logging.basicConfig(level=logging.INFO)
 print(tf.io.gfile.get_registered_schemes())
 "
-
+popd

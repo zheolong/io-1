@@ -886,6 +886,14 @@ go_repository(
     name = "com_github_matttproud_golang_protobuf_extensions",
     importpath = "github.com/matttproud/golang_protobuf_extensions",
     tag = "v1.0.4",
+
+    # 下面的反而会编译失败，原因不明
+    # 1) 官方代理
+    # urls = ["https://proxy.golang.org/github.com/prometheus/golang_protobuf_extensions/@v/v1.0.4.zip"],
+    # 2) 国内七牛镜像（二选一，把上面那行注释掉即可）
+    #urls = ["https://goproxy.cn/github.com/matttproud/golang_protobuf_extensions/@v/v1.0.4.zip"],
+    #strip_prefix = "github.com/matttproud/golang_protobuf_extensions@v1.0.4",
+    #type = "zip",
 )
 
 go_repository(

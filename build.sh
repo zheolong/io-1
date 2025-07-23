@@ -23,7 +23,9 @@ python setup.py bdist_wheel --data bazel-bin
 pip3 install --force dist/tensorflow_io-*.whl
 
 # 正常结果：['oss', 'file', 'hdfs', 'viewfs', 'gs', 'har', 'az', '', 'http', 'ram', 'https', 's3']
+# 不要在编译的目录下执行，编译的目录下执行结果必然是缺少一些scheme
 
+pushd tmp
 python -W always -c "
 import tensorflow as tf
 import tensorflow_io as tfio
@@ -31,4 +33,4 @@ import logging, os, sys
 logging.basicConfig(level=logging.INFO)
 print(tf.io.gfile.get_registered_schemes())
 "
-
+popd

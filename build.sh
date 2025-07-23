@@ -1,6 +1,29 @@
 # 环境
 # gcc (GCC) 9.3.1 20200408 (Red Hat 9.3.1-2)
+
+# libhdfs3
 sudo yum install libxml2-devel sudo yum install epel-release libgsasl libgsasl-devel libuuid-devel -y
+
+pushd /tmp
+git clone git@github.com:erikmuttersbach/libhdfs3.git
+pushd libhdfs3
+if [ "$(basename "$PWD")" != "build" ]; then
+  mkdir -p build
+  cd build
+fi
+cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local/libhdfs3
+make -j$(nproc)
+sudo make install
+popd
+popd
+
+## 将下面的环境变量，加入到~/.zshrc里
+: <<'END_COMMENT'
+export LD_LIBRARY_PATH=/usr/local/libhdfs3/lib:$LD_LIBRARY_PATH
+export LIBRARY_PATH=/usr/local/libhdfs3/lib:$LIBRARY_PATH
+export C_INCLUDE_PATH=/usr/local/libhdfs3/include:$C_INCLUDE_PATH
+export CPATH=/usr/local/libhdfs3/include:$CPATH
+END_COMMENT
 
 # 编译
 
